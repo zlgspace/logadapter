@@ -1,7 +1,5 @@
 package com.zlgspace.logadapter;
 
-import android.util.Log;
-
 class DefaultLogAdapterImpl implements LogAdapter {
     @Override
     public void v(String tag, String msg) {
@@ -31,5 +29,30 @@ class DefaultLogAdapterImpl implements LogAdapter {
     @Override
     public void e(String tag, String msg, Throwable tr) {
         Log.e(tag,msg,tr);
+    }
+
+    private static class Log{
+        public static void v(String tag, String msg){
+            print("V",tag,msg);
+        }
+        public static void d(String tag, String msg){
+            print("D",tag,msg);
+        }
+        public static void i(String tag, String msg){
+            print("I",tag,msg);
+        }
+        public static void w(String tag, String msg){
+            print("W",tag,msg);
+        }
+        public static void e(String tag, String msg){
+            print("E",tag,msg);
+        }
+        public static void e(String tag, String msg, Throwable tr){
+            print("E",tag,msg+"\n"+tr.toString());
+        }
+
+        private static void print(String lvl,String tag,String msg){
+            System.out.println(lvl+"/"+tag+": "+msg);
+        }
     }
 }
